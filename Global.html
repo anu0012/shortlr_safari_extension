@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>global HTML page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.1/clipboard.min.js"></script>
+<script type="text/javascript">
+
+function getUrl(){
+	var fullUrl = safari.application.activeBrowserWindow.activeTab.url;
+
+    $.post("http://cb.lk/api/v1/shorten", {
+            url: fullUrl,
+            code: "",
+            secret: ""
+        }, function (data) {
+		 	alert("http://cb.lk/" + data.shortcode + "\nSelect and press (cmd+c) to copy"); 
+        });
+}
+    safari.application.addEventListener("command", getUrl, false);
+
+</script>
+</head>
+<body>
+</body>
+</html>
